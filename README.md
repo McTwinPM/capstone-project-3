@@ -7,7 +7,7 @@
     2. create server folder/files (done)
     3. App
     4. Models
-    5. Config
+    5. Config (done)
     6. Seed
     7. Migrate database
 2. Set Up Client
