@@ -5,8 +5,8 @@
 1. Set Up Server
     1. install python dependencies(done)
     2. create server folder/files (done)
-    3. App
-    4. Models
+    3. App (done)
+    4. Models (done)
     5. Config (done)
     6. Seed
     7. Migrate database
