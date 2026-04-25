@@ -40,6 +40,8 @@ class Character(db.Model):
     user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
     user = relationship('User', back_populates='character', lazy=True)
 
+    condition = relationship('Condition', back_populates='character', lazy=True)
+
     def __repr__(self):
         return f"<Character {self.id} name={self.name} user_id={self.user_id}>"
 
