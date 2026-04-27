@@ -13,7 +13,7 @@
 2. Set Up Client
     1. install React/Javascript dependencies (done)
     2. Set up pages and components (done)
-        1. Login
+        1. Login (done)
             1. LoginForm (done)
             2. SignupForm (done)
         2. Character Vault
