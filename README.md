@@ -15,7 +15,7 @@
     2. Set up pages and components (done)
         1. Login
             1. LoginForm (done)
-            2. SignupForm
+            2. SignupForm (done)
         2. Character Vault
             1. CharacterList
             2. AddCharacterForm
