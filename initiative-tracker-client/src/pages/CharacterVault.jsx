@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import AddCharacterForm from "../components/AddCharacterForm";
+import PaginateButtons from "../components/PaginateButtons";
 
 
 function CharacterVault() {
@@ -12,6 +13,8 @@ function CharacterVault() {
     const [ac, setAc] = useState("");
     const [conditions, setConditions] = useState("");
     const [message, setMessage] = useState("");
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(1);
 
 
     useEffect(() => {
@@ -21,7 +24,11 @@ function CharacterVault() {
             }
         })
             .then((r) => r.json())
-            .then((data) => setCharacters(data));
+            .then((data) => {
+                setCharacters(data.characters);
+                setPage(data.page);
+                setTotalPages(data.totalPages);
+            });
     }, []);
 
     const filteredCharacters = characters.filter((character) =>
@@ -57,6 +64,12 @@ function CharacterVault() {
                         </div>
                     ))}
             </div>
+            <PaginateButtons
+                page={page}
+                setPage={setPage}
+                totalPages={totalPages}
+                setTotalPages={setTotalPages}
+            />
         </>
     );
 }

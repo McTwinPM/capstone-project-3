@@ -23,7 +23,7 @@
             4. DeleteCharacterButton
             5. CharacterCard
             6. SearchBar (done)
-            7. PaginateButtons
+            7. PaginateButtons (done)
         3. Initiative
             1. EditCharacterButton
             2. AddconditionForm

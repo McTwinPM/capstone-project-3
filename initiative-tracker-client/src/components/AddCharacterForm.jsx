@@ -74,7 +74,7 @@ function AddCharacterForm({ name, setName, initiative, setInitiative, hp, setHp,
                 <button type="submit">Add Character</button>
             </form>
             {message && <p className="message">{message}</p>}
-            <button type='submit'></button>
+            <button type='submit' onClick={handleSubmit}>Submit</button>
         </div>
     );
 }
