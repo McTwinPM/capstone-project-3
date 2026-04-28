@@ -17,12 +17,12 @@
             1. LoginForm (done)
             2. SignupForm (done)
         2. Character Vault
-            1. CharacterList
-            2. AddCharacterForm
+            1. CharacterList (done)
+            2. AddCharacterForm (done)
             3. EditCharacterButton
             4. DeleteCharacterButton
             5. CharacterCard
-            6. SearchBar
+            6. SearchBar (done)
             7. PaginateButtons
         3. Initiative
             1. EditCharacterButton

@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
+import AddCharacterForm from "../components/AddCharacterForm";
 
 
 function CharacterVault() {
     const [characters, setCharacters] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const [name, setName] = useState("");
+    const [initiative, setInitiative] = useState("");
+    const [hp, setHp] = useState("");
+    const [ac, setAc] = useState("");
+    const [conditions, setConditions] = useState("");
+    const [message, setMessage] = useState("");
 
-    
+
     useEffect(() => {
         fetch("/api/characters", {
             headers: {
@@ -25,6 +32,20 @@ function CharacterVault() {
         <>
             <h1 className="title">Character Vault</h1>
             <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            <AddCharacterForm
+                name={name}
+                setName={setName}
+                initiative={initiative}
+                setInitiative={setInitiative}
+                hp={hp}
+                setHp={setHp}
+                ac={ac}
+                setAc={setAc}
+                conditions={conditions}
+                setConditions={setConditions}
+                message={message}
+                setMessage={setMessage}
+            />
             <div className="character-vault">
                 {filteredCharacters.map((character) => (
                     <div key={character.id} className="character-card">
