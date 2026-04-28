@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
 import AddCharacterForm from "../components/AddCharacterForm";
 import PaginateButtons from "../components/PaginateButtons";
+import CharacterCard from "../components/CharacterCard";
 
 
 function CharacterVault() {
@@ -55,14 +56,8 @@ function CharacterVault() {
             />
             <div className="character-vault">
                 {filteredCharacters.map((character) => (
-                    <div key={character.id} className="character-card">
-                            <h2>{character.name}</h2>
-                            <p>Initiative: {character.initiative}</p>
-                            <p>HP: {character.hp}</p>
-                            <p>AC: {character.ac}</p>
-                            <p>Conditions: {character.conditions.join(", ")}</p>
-                        </div>
-                    ))}
+                    <CharacterCard key={character.id} character={character} />
+                ))}
             </div>
             <PaginateButtons
                 page={page}

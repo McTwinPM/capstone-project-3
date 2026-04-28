@@ -21,12 +21,12 @@
             2. AddCharacterForm (done)
             3. EditCharacterButton
             4. DeleteCharacterButton
-            5. CharacterCard
+            5. CharacterCard (done)
             6. SearchBar (done)
             7. PaginateButtons (done)
         3. Initiative
             1. EditCharacterButton
-            2. AddconditionForm
+            2. AddconditionForm (done)
             3. DeleteCondition
             4. EditCondition
         4. App
