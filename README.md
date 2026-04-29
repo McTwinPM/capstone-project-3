@@ -29,8 +29,8 @@
             2. AddconditionForm
             3. DeleteCondition
             4. EditCondition
-        4. App
-            1. Navbar
+        4. App (done)
+            1. Navbar  (done)
     3. CSS
         1. App
         2. Login
