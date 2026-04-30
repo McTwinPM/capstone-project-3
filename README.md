@@ -19,13 +19,13 @@
         2. Character Vault
             1. CharacterList (done)
             2. AddCharacterForm (done)
-            3. EditCharacterButton
-            4. DeleteCharacterButton
+            3. EditCharacterButton (done)
+            4. DeleteCharacterButton (done)
             5. CharacterCard (done)
             6. SearchBar (done)
             7. PaginateButtons (done)
         3. Initiative
-            1. EditCharacterButton
+            1. EditCharacterButton (done)
             2. AddconditionForm (done)
             3. DeleteCondition
             4. EditCondition
