@@ -27,8 +27,7 @@
         3. Initiative
             1. EditCharacterButton (done)
             2. AddconditionForm (done)
-            3. DeleteCondition
-            4. EditCondition
+            3. DeleteCondition (done)
         4. App (done)
             1. Navbar  (done)
     3. CSS
