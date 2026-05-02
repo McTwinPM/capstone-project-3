@@ -67,7 +67,19 @@ class CharacterList(Resource):
         user_id = get_jwt_identity()
         page = request.args.get('page', 1, type=int)
         per_page = request.args.get('per_page', 10, type=int)
-        characters = Character.query.filter_by(user_id=user_id).paginate(page=page, per_page=per_page, error_out=False)
+
+        query = Character.query.filter_by(user_id=user_id)
+        sort = request.args.get('sort', 'id')
+        if sort == 'initiative':
+            query = query.order_by(Character.Initiative.desc())
+        else:
+            query = query.order_by(Character.name.asc())
+        
+        min_initiative = request.args.get('min_initiative', type=int)
+        if min_initiative is not None:
+            query = query.filter(Character.Initiative > min_initiative)
+
+        characters = query.paginate(page=page, per_page=per_page, error_out=False)
         character_schema = CharacterSchema(many=True)
         return ({
             "characters": character_schema.dump(characters.items),
