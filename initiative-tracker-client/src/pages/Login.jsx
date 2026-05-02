@@ -10,7 +10,7 @@ function Login({ onLogin }) {
     const handleLogin = (token, user) => {
         localStorage.setItem('token', token);
         onLogin(user, token);
-        navigate('/initiative-tracker');
+        navigate('/');
     }
 
     return (

@@ -5,8 +5,6 @@ import DeleteCharacterButton from "./DeleteCharacterButton";
 import DeleteCondition from "./DeleteCondition";
 
 function CharacterCard({ character }) {
-    const [character, setCharacter] = useState(null);
-        // const [showDetails, setShowDetails] = useState(false);
     const [editing, setEditing] = useState(false);
     const [editedCharacter, setEditedCharacter] = useState({});
     const [errors, setErrors] = useState(null);

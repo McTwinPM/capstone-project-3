@@ -5,6 +5,13 @@ from models import User, Character, Condition, UserSchema, CharacterSchema, Cond
 from marshmallow import ValidationError
 from flask_restful import Resource
 
+def current_user_id():
+    identity = get_jwt_identity()
+    try:
+        return int(identity)
+    except (ValueError, TypeError):
+        return None
+
 @app.before_request
 def before_request():
     open_access_list = [
@@ -35,15 +42,15 @@ class Signup(Resource):
             db.session.add(user)
             db.session.commit()
 
-            access_token = create_access_token(identity=user.id)
+            access_token = create_access_token(identity=str(user.id))
             return {"message": "User created successfully", "access_token": access_token}, 201
         except ValidationError as err:
             return {"error": err.messages, "status": 400}
 
 class WhoAmI(Resource):
     def get (self):
-        user_id = get_jwt_identity()
-        user = db.session.get(User, int(user_id))
+        user_id = current_user_id()
+        user = db.session.get(User, user_id)
         if not user:
             return {"error": "User not found"}, 404
         user_schema = UserSchema()
@@ -56,15 +63,15 @@ class Login(Resource):
         password = data.get('password')
 
         user = User.query.filter_by(username=username).first()
-        if not user or not user.check_password(password):
+        if not user or not user.authenticate(password):
             return {"error": "Invalid username or password"}, 401
         
-        access_token = create_access_token(identity=user.id)
+        access_token = create_access_token(identity=str(user.id))
         return {"message": "Login successful", "access_token": access_token}, 200
     
 class CharacterList(Resource):
     def get(self):
-        user_id = get_jwt_identity()
+        user_id = current_user_id()
         page = request.args.get('page', 1, type=int)
         per_page = request.args.get('per_page', 10, type=int)
 
@@ -89,7 +96,7 @@ class CharacterList(Resource):
         }), 200
     
     def post(self):
-        user_id = get_jwt_identity()
+        user_id = current_user_id()
         data = request.get_json()
         character_schema = CharacterSchema()
         try:
@@ -109,7 +116,7 @@ class CharacterList(Resource):
     
 class CharacterDetail(Resource):
     def get(self, character_id):
-        user_id = get_jwt_identity()
+        user_id = current_user_id()
         character = Character.query.filter_by(id=character_id, user_id=user_id).first()
         if not character:
             return {"error": "Character not found"}, 404
@@ -117,7 +124,7 @@ class CharacterDetail(Resource):
         return (character_schema.dump(character), 200)
     
     def patch(self, character_id):
-        user_id = get_jwt_identity()
+        user_id = current_user_id()
         character = Character.query.filter_by(id=character_id, user_id=user_id).first()
         if not character:
             return {"error": "Character not found"}, 404
@@ -134,7 +141,7 @@ class CharacterDetail(Resource):
             return {"error": err.messages, "status": 400}
     
     def delete(self, character_id):
-        user_id = get_jwt_identity()
+        user_id = current_user_id()
         character = Character.query.filter_by(id=character_id, user_id=user_id).first()
         if not character:
             return {"error": "Character not found"}, 404
@@ -145,7 +152,7 @@ class CharacterDetail(Resource):
 
 class ConditionList(Resource):
     def get(self, character_id):
-        user_id = get_jwt_identity()
+        user_id = current_user_id()
         character = Character.query.filter_by(id=character_id, user_id=user_id).first()
         if not character:
             return {"error": "Character not found"}, 404
@@ -155,7 +162,7 @@ class ConditionList(Resource):
         return (condition_schema.dump(conditions), 200)
     
     def post(self, character_id):
-        user_id = get_jwt_identity()
+        user_id = current_user_id()
         character = Character.query.filter_by(id=character_id, user_id=user_id).first()
         if not character:
             return {"error": "Character not found"}, 404
@@ -176,7 +183,7 @@ class ConditionList(Resource):
 
 class ConditionDetail(Resource):
     def delete(self, character_id, condition_id):
-        user_id = get_jwt_identity()
+        user_id = current_user_id()
         character = Character.query.filter_by(id=character_id, user_id=user_id).first()
         if not character:
             return {"error": "Character not found"}, 404
