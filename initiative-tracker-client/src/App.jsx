@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import Login from './components/Login'
+import Login from './pages/Login'
 import CharacterVault from './pages/CharacterVault'
 import Initiative from './pages/Initiative'
 import Navbar from './components/Navbar'

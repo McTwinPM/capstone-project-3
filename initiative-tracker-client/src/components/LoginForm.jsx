@@ -13,7 +13,7 @@ function LoginForm({ onLogin }) {
       body: JSON.stringify({ username, password }),
     })
       .then((res) => {
-        if (!res.ok) {
+        if (res.ok) {
             res.json().then(({ access_token }) => {
                 fetch('/api/me', {
                     headers: { 
