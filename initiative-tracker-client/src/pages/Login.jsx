@@ -7,9 +7,9 @@ function Login({ onLogin }) {
     const [showLogin, setShowLogin] = useState(true);
     const navigate = useNavigate();
 
-    const handleLogin = (token, user) => {
-        localStorage.setItem('token', token);
-        onLogin(user, token);
+    const handleLogin = (user, access_token) => {
+        localStorage.setItem('token', access_token);
+        onLogin(user, access_token);
         navigate('/');
     }
 

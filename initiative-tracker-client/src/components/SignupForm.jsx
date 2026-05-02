@@ -14,9 +14,9 @@ function SignupForm({ onLogin }) {
     })
         .then((res) => {
           if (res.ok) {
-            return res.json().then(({ acces_token }) => {
+            return res.json().then(({ access_token }) => {
                 fetch('api/me', {
-                    headers: { Authorization: `Bearer ${acces_token}` 
+                    headers: { Authorization: `Bearer ${access_token}` 
                 },
                 })
                     .then(userRes => {
@@ -26,7 +26,7 @@ function SignupForm({ onLogin }) {
                         throw new Error('Failed to fetch user data');
                     })
                     .then(user => {
-                        onLogin(user, acces_token);
+                        onLogin(user, access_token);
                     })
                     .catch(err => {
                         console.error('Error fetching user data:', err);

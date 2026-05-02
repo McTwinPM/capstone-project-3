@@ -12,11 +12,13 @@ function Initiative() {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
         })
-            .then((r) => r.json())
-            .then((data) => {
-                setCharacters(data.characters);
-
-            });
+            .then(async (r) => {
+    const data = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(data.error || `Request failed: ${r.status}`);
+    return data;
+  })
+  .then((data) => setCharacters(Array.isArray(data.characters) ? data.characters : []))
+  .catch(() => setCharacters([]));
     }, []);
 
     return (

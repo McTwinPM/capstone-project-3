@@ -8,7 +8,7 @@ function CharacterCard({ character }) {
     const [editing, setEditing] = useState(false);
     const [editedCharacter, setEditedCharacter] = useState({});
     const [errors, setErrors] = useState(null);
-    const [conditions, setConditions] = useState(character.conditions);
+    const [conditions, setConditions] = useState(Array.isArray(character.conditions) ? character.conditions : []);
 
     useEffect(() => {
         fetch(`/api/characters/${character.id}`, {
@@ -23,9 +23,9 @@ function CharacterCard({ character }) {
     return (
         <div className="character-card">
             <h2>{character.name}</h2>
-            <p>Initiative: {character.initiative}</p>
-            <p>HP: {character.hp}</p>
-            <p>AC: {character.ac}</p>
+            <p>Initiative: {character.Initiative}</p>
+            <p>HP: {character.HitPoints}</p>
+            <p>AC: {character.ArmorClass}</p>
             <p>Conditions: {conditions.length > 0 ? conditions.map((condition) => 
                 condition.name).join(", ")(
                 <DeleteCondition className="delete-condition-button"
@@ -46,7 +46,7 @@ function CharacterCard({ character }) {
             />
             <DeleteCharacterButton className="delete-character-button"
                 characterId={character.id} 
-                setCharacter={setCharacter} />            
+                setConditions={setConditions} />            
         </div>
     );
 }

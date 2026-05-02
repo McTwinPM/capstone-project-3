@@ -14,7 +14,7 @@ function DeleteCondition({ characterId, setConditions, conditionId }) {
             .then((r) => {
                 if (r.ok) {
                     setMessage("Condition deleted successfully");
-                    setConditions(null);
+                    setConditions((prev) => Array.isArray(prev) ? prev.filter((c) => c.id !== conditionId) : []);
                 } else {
                     return r.json().then((err) => Promise.reject(err));
                 }
