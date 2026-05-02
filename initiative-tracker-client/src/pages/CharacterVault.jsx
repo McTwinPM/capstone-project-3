@@ -19,7 +19,7 @@ function CharacterVault() {
 
 
     useEffect(() => {
-        fetch("/api/characters", {
+        fetch("/api/characters?sort=name", {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }

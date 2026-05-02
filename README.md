@@ -24,7 +24,7 @@
             5. CharacterCard (done)
             6. SearchBar (done)
             7. PaginateButtons (done)
-        3. Initiative
+        3. Initiative (done)
             1. EditCharacterButton (done)
             2. AddconditionForm (done)
             3. DeleteCondition (done)
