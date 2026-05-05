@@ -9,10 +9,10 @@ function EditCharacterButton({ character, setCharacter, editing, setEditing }) {
         setEditing(true);
         setEditedCharacter({
             name: character.name,
-            initiative: character.initiative,
-            hp: character.hp,
-            ac: character.ac,
-            conditions: character.conditions.join(", ")
+            Initiative: character.Initiative,
+            HitPoints: character.HitPoints,
+            ArmorClass: character.ArmorClass,
+            conditions: Array.isArray(character.conditions) ? character.conditions.join(", ") : ""
         })
     }
 
@@ -33,7 +33,7 @@ function EditCharacterButton({ character, setCharacter, editing, setEditing }) {
                 }
             })
             .then((data) => {
-                setCharacter(data);
+                setCharacter(data.character);
                 setEditing(false);
             })
             .catch((err) => setErrors(err.errors));
@@ -48,6 +48,27 @@ function EditCharacterButton({ character, setCharacter, editing, setEditing }) {
     return (
         editing ? (
             <div>
+                <textarea
+                    value={editedCharacter.name}
+                    onChange={(e) => setEditedCharacter({ ...editedCharacter, name: e.target.value })}
+                />
+                <textarea
+                    value={editedCharacter.Initiative}
+                    onChange={(e) => setEditedCharacter({ ...editedCharacter, Initiative: e.target.value })}
+                />
+                <textarea
+                    value={editedCharacter.HitPoints}
+                    onChange={(e) => setEditedCharacter({ ...editedCharacter, HitPoints: e.target.value })}
+                />
+                <textarea
+                    value={editedCharacter.ArmorClass}
+                    onChange={(e) => setEditedCharacter({ ...editedCharacter, ArmorClass: e.target.value })}
+                />
+                <textarea
+                    value={editedCharacter.conditions}
+                    onChange={(e) => setEditedCharacter({ ...editedCharacter, conditions: e.target.value })}
+                />
+                {errors && <div className="error">{errors.join(", ")}</div>}
                 <button onClick={handleEdit}>Save</button>
                 <button onClick={handleCancel}>Cancel</button>
             </div>

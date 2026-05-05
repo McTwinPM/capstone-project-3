@@ -26,16 +26,24 @@ function CharacterCard({ character }) {
             <p>Initiative: {character.Initiative}</p>
             <p>HP: {character.HitPoints}</p>
             <p>AC: {character.ArmorClass}</p>
-            <p>Conditions: {conditions.length > 0 ? conditions.map((condition) => 
-                condition.name).join(", ")(
-                <DeleteCondition className="delete-condition-button"
-                    key={condition.id}
-                    characterId={character.id}
-                    conditionId={condition.id}
-                    setConditions={setConditions}
-                />) : "None"}</p>
+            <p>Conditions: 
+                <ul>
+                    {conditions.length > 0 ? conditions.map((condition) => (
+                <li key={condition.id}>
+                    {condition.name}
+                        <DeleteCondition className="delete-condition-button"
+                            key={condition.id}
+                            characterId={character.id}
+                            conditionId={condition.id}
+                            setConditions={setConditions}
+                />
+                </li>
+                )) : <li>"None"</li>}
+                </ul>
+            </p>
             <AddCondition className="add-condition-button" 
-            characterId={character.id} 
+            characterId={character.id}
+            conditions={conditions} 
             setConditions={setConditions}
              />
             <EditCharacterButton className="edit-character-button"
