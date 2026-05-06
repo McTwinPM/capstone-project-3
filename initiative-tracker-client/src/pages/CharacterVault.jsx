@@ -53,10 +53,11 @@ function CharacterVault() {
                 setConditions={setConditions}
                 message={message}
                 setMessage={setMessage}
+                setCharacters={setCharacters}
             />
             <div className="character-vault">
                 {filteredCharacters.map((character) => (
-                    <CharacterCard key={character.id} character={character} />
+                    <CharacterCard key={character.id} character={character} setCharacters={setCharacters} />
                 ))}
             </div>
             <PaginateButtons

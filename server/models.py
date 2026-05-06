@@ -77,7 +77,7 @@ class CharacterSchema(Schema):
     ArmorClass = fields.Int(required=True)
     HitPoints = fields.Int(required=True)
     Initiative = fields.Int(required=False, allow_none=True)
-    user_id = fields.Int(required=True)
+    user_id = fields.Int(dump_only=True)
     user = fields.Nested(UserSchema, only=['id', 'username'])
 
     @validates_schema

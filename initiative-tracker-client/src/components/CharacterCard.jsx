@@ -1,27 +1,33 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect, } from "react";
 import AddCondition from "./AddCondition";
 // import EditCharacterButton from "./EditCharacterButton";
 import DeleteCharacterButton from "./DeleteCharacterButton";
 import DeleteCondition from "./DeleteCondition";
+// import { useParams } from "react-router-dom";
 
-function CharacterCard({ character }) {
+function CharacterCard({ character, setCharacters } ) {
+    // const { id } = useParams();
+    // const [character, setCharacter] = useState(null);
     const [editing, setEditing] = useState(false);
     const [editedCharacter, setEditedCharacter] = useState({});
     const [errors, setErrors] = useState(null);
-    const [conditions, setConditions] = useState(Array.isArray(character.conditions) ? character.conditions : []);
+    const [conditions, setConditions] = useState([]);
 
     useEffect(() => {
-        fetch(`/api/characters/${character.id}`, {
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
-            }
-        })
-            .then((r) => r.json())
-            .then((data) => setCharacter(data));
-    }, [character.id]);
+        if (character?.conditions) setConditions(character.conditions);
+    //     // fetch(`/api/characters/${id}`, {
+    //     //     headers: {
+    //     //         "Authorization": `Bearer ${localStorage.getItem("token")}`
+    //     //     }
+    //     // })
+    //     //     .then((r) => r.json())
+    //     //     .then((data) => setCharacter(data));
+    }, [character]);
+
+    if (!character) return <div>No character found</div>;
 
     function editCharacter() {
-        if (!character  || !character.id) return;
+        // if (!character  || !character.id) return;
         
         setEditing(true);
         setEditedCharacter({
@@ -29,7 +35,7 @@ function CharacterCard({ character }) {
             Initiative: character.Initiative,
             HitPoints: character.HitPoints,
             ArmorClass: character.ArmorClass,
-            conditions: Array.isArray(character.conditions) ? character.conditions.join(", ") : ""
+            // conditions: Array.isArray(character.conditions) ? character.conditions.join(", ") : ""
         })
     }
 
@@ -48,7 +54,7 @@ function CharacterCard({ character }) {
                     setErrors(`Error editing character: ${data.error}`);
                     console.error("Error editing character:", data.error);
                 } else {
-                    setEditedCharacter(data.character);
+                    setCharacters(prev => prev.map(c => c.id === data.character.id ? data.character : c));
                     setEditing(false);
                     setErrors(null);
                 }
@@ -85,7 +91,7 @@ function CharacterCard({ character }) {
                     value={editedCharacter.conditions || (Array.isArray(character.conditions) ? character.conditions.join(", ") : "")}
                     onChange={(e) => setEditedCharacter({ ...editedCharacter, conditions: e.target.value })}
                 />
-                {errors && <div className="error">{errors.join(", ")}</div>}
+                {errors && <div className="error">{errors}</div>}
                 <button onClick={handleEdit}>Save</button>
                 <button onClick={handleCancel}>Cancel</button>
             </div>
@@ -123,7 +129,7 @@ function CharacterCard({ character }) {
             <button onClick={editCharacter}>Edit</button>
             <DeleteCharacterButton className="delete-character-button"
                 characterId={character.id} 
-                setConditions={setConditions} />            
+                setCharacters={setCharacters} />
         </div>
     ));
 }
