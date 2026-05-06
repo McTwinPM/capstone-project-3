@@ -6,6 +6,8 @@ function EditCharacterButton({ character, setCharacter, editing, setEditing }) {
     const [errors, setErrors] = useState(null);
 
     function editCharacter() {
+        if (!character  || !character.id) return;
+        
         setEditing(true);
         setEditedCharacter({
             name: character.name,
@@ -33,7 +35,7 @@ function EditCharacterButton({ character, setCharacter, editing, setEditing }) {
                 }
             })
             .then((data) => {
-                setCharacter(data.character);
+                setEditedCharacter(data.character);
                 setEditing(false);
             })
             .catch((err) => setErrors(err.errors));
