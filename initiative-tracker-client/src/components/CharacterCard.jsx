@@ -1,13 +1,9 @@
 import { useState, useEffect, } from "react";
 import AddCondition from "./AddCondition";
-// import EditCharacterButton from "./EditCharacterButton";
 import DeleteCharacterButton from "./DeleteCharacterButton";
 import DeleteCondition from "./DeleteCondition";
-// import { useParams } from "react-router-dom";
 
 function CharacterCard({ character, setCharacters } ) {
-    // const { id } = useParams();
-    // const [character, setCharacter] = useState(null);
     const [editing, setEditing] = useState(false);
     const [editedCharacter, setEditedCharacter] = useState({});
     const [errors, setErrors] = useState(null);
@@ -15,19 +11,11 @@ function CharacterCard({ character, setCharacters } ) {
 
     useEffect(() => {
         if (character?.conditions) setConditions(character.conditions);
-    //     // fetch(`/api/characters/${id}`, {
-    //     //     headers: {
-    //     //         "Authorization": `Bearer ${localStorage.getItem("token")}`
-    //     //     }
-    //     // })
-    //     //     .then((r) => r.json())
-    //     //     .then((data) => setCharacter(data));
     }, [character]);
 
     if (!character) return <div>No character found</div>;
 
     function editCharacter() {
-        // if (!character  || !character.id) return;
         
         setEditing(true);
         setEditedCharacter({
@@ -35,7 +23,6 @@ function CharacterCard({ character, setCharacters } ) {
             Initiative: character.Initiative,
             HitPoints: character.HitPoints,
             ArmorClass: character.ArmorClass,
-            // conditions: Array.isArray(character.conditions) ? character.conditions.join(", ") : ""
         })
     }
 
@@ -116,16 +103,10 @@ function CharacterCard({ character, setCharacters } ) {
                 )) : <li>"None"</li>}
                 </ul>
             <AddCondition className="add-condition-button" 
-            characterId={character.id}
-            conditions={conditions} 
-            setConditions={setConditions}
+                characterId={character.id}
+                conditions={conditions} 
+                setConditions={setConditions}
              />
-            {/* <EditCharacterButton className="edit-character-button"
-                character={editedCharacter  || character}
-                setCharacter={setEditedCharacter}
-                editing={editing}
-                setEditing={setEditing}
-            /> */}
             <button onClick={editCharacter}>Edit</button>
             <DeleteCharacterButton className="delete-character-button"
                 characterId={character.id} 
