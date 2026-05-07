@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-function DeleteCharacterButton({ characterId, setCharacter }) {
+function DeleteCharacterButton({ characterId, setCharacters }) {
     const [deleting, setDeleting] = useState(false);
     const [error, setError] = useState(null);
 
@@ -18,7 +18,7 @@ function DeleteCharacterButton({ characterId, setCharacter }) {
                     if (r.ok) {
                         setError(null);
                         console.log("Character deleted successfully");
-                        setCharacter(null);
+                        setCharacters(prev => prev.filter(c => c.id !== characterId));
                     } else {
                         return r.json().then((err) => Promise.reject(err));
                     }
