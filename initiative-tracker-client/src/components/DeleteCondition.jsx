@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 function DeleteCondition({ characterId, setConditions, conditionId }) {
-    const [condition, setCondition] = useState("");
     const [message, setMessage] = useState("");
 
     const handleDelete = (event) => {

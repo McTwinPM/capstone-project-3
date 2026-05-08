@@ -1,4 +1,4 @@
-import { useState, useEffect, } from "react";
+import { useState, useEffect, use, } from "react";
 import AddCondition from "./AddCondition";
 import DeleteCharacterButton from "./DeleteCharacterButton";
 import DeleteCondition from "./DeleteCondition";
@@ -9,9 +9,20 @@ function CharacterCard({ character, setCharacters } ) {
     const [errors, setErrors] = useState(null);
     const [conditions, setConditions] = useState([]);
 
+    // useEffect(() => {
+    //     if (character?.conditions) setConditions(character.conditions);
+    // }, [character]);
+
     useEffect(() => {
-        if (character?.conditions) setConditions(character.conditions);
-    }, [character]);
+        fetch(`/api/characters/${character.id}/conditions`, {
+            headers: {
+                "Authorization": `Bearer ${localStorage.getItem("token")}`
+            }
+        })
+            .then((r) => r.json())
+            .then((data) => setConditions(data))
+            .catch((err) => console.error("Error fetching conditions:", err));
+    }, [character.id]);
 
     if (!character) return <div>No character found</div>;
 
@@ -94,7 +105,6 @@ function CharacterCard({ character, setCharacters } ) {
                 <li key={condition.id}>
                     {condition.name}
                         <DeleteCondition className="delete-condition-button"
-                            key={condition.id}
                             characterId={character.id}
                             conditionId={condition.id}
                             setConditions={setConditions}

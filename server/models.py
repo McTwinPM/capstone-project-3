@@ -90,7 +90,7 @@ class CharacterSchema(Schema):
 class ConditionSchema(Schema):
     id = fields.Int(dump_only=True)
     name = fields.Str(required=True)
-    character_id = fields.Int(required=True)
+    character_id = fields.Int(required=False)
     character = fields.Nested(CharacterSchema, only=['id', 'name', 'ArmorClass', 'HitPoints', 'Initiative'])
 
     @validates_schema
