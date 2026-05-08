@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 
 function AddCondition({ characterId, conditions, setConditions }) {
-    const [conditionInput, setConditionInput] = useState("");
+    // const [conditionInput, setConditionInput] = useState("");
+    const [condition, setCondition] = useState("");
+    const [message, setMessage] = useState("");
 
     function handleSubmit(e) {
         e.preventDefault();
-        const newConditions = [...conditions, conditionInput.trim()].filter((c) => c !== "");
+        const newConditions = [...conditions, condition.trim()].filter((c) => c !== "");
 
         fetch(`/api/characters/${characterId}/conditions`, {
             method: "POST",
@@ -13,15 +15,15 @@ function AddCondition({ characterId, conditions, setConditions }) {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
-            body: JSON.stringify({ conditions: newConditions })
+            body: JSON.stringify({ name: condition.trim(), character_id: characterId })
         })
             .then((r) => r.json())
             .then((data) => {
                 if (data.error) {
                     console.error("Error adding condition:", data.error);
                 } else {
-                    setConditions(newConditions);
-                    setConditionInput("");
+                    setConditions(prev => [...prev, data.condition]);
+                    setCondition("");
                 }
             });
     }
@@ -31,8 +33,8 @@ function AddCondition({ characterId, conditions, setConditions }) {
             <input
                 type="text"
                 placeholder="Add condition"
-                value={conditionInput}
-                onChange={(e) => setConditionInput(e.target.value)}
+                value={condition}
+                onChange={(e) => setCondition(e.target.value)}
             />
             <button type="submit">Add</button>
         </form>

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 function AddCharacterForm({ name, setName, initiative, setInitiative, hp, setHp, ac, setAc, conditions, setConditions, message, setMessage, setCharacters, onSubmit }) {
-    const [conditionInput, setConditionInput] = useState("");
 
     function handleSubmit(e) {
         e.preventDefault();
