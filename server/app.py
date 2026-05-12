@@ -15,6 +15,10 @@ def current_user_id():
 
 @app.before_request
 def before_request():
+
+    if request.method == 'OPTIONS':
+        return '', 204
+    
     open_access_list = [
         'signup',
         'login',
