@@ -4,6 +4,7 @@ from config import app, db, api
 from models import User, Character, Condition, UserSchema, CharacterSchema, ConditionSchema
 from marshmallow import ValidationError
 from flask_restful import Resource
+import os
 
 def current_user_id():
     identity = get_jwt_identity()
@@ -205,4 +206,4 @@ api.add_resource(CharacterDetail, '/characters/<int:character_id>')
 api.add_resource(ConditionList, '/characters/<int:character_id>/conditions')
 api.add_resource(ConditionDetail, '/characters/<int:character_id>/conditions/<int:condition_id>')
 if __name__ == '__main__':
-    app.run(port=5555, debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get("PORT", 5555)), debug=True)
