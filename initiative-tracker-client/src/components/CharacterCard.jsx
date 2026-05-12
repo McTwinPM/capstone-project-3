@@ -11,7 +11,7 @@ function CharacterCard({ character, setCharacters } ) {
 
 
     useEffect(() => {
-        fetch(`/api/characters/${character.id}/conditions`, {
+        fetch(`${import.meta.env.VITE_API_URL}/characters/${character.id}/conditions`, {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
@@ -35,7 +35,7 @@ function CharacterCard({ character, setCharacters } ) {
     }
 
     const handleEdit = () => {
-        fetch(`/api/characters/${character.id}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/characters/${character.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

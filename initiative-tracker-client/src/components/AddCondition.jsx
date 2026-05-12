@@ -9,7 +9,7 @@ function AddCondition({ characterId, conditions, setConditions }) {
         e.preventDefault();
         const newConditions = [...conditions, condition.trim()].filter((c) => c !== "");
 
-        fetch(`/api/characters/${characterId}/conditions`, {
+        fetch(`${import.meta.env.VITE_API_URL}/characters/${characterId}/conditions`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -7,7 +7,7 @@ function LoginForm({ onLogin }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch('/api/login', {
+    fetch(`${import.meta.env.VITE_API_URL}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password }),
@@ -15,7 +15,7 @@ function LoginForm({ onLogin }) {
       .then((res) => {
         if (res.ok) {
             res.json().then(({ access_token }) => {
-                fetch('/api/me', {
+                fetch(`${import.meta.env.VITE_API_URL}me`, {
                     headers: { 
                         'Authorization': `Bearer ${access_token}` 
                 }
