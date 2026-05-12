@@ -18,7 +18,7 @@ function EditCharacterButton({ character, setCharacter, editing, setEditing }) {
     }
 
     const handleEdit = () => {
-        fetch(`/api/characters/${character.id}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/characters/${character.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

@@ -6,7 +6,7 @@ function Initiative() {
     const [initiative, setInitiative] = useState("");
 
     useEffect(() => {
-        fetch("/api/characters?sort=initiative&min_initiative=0", {
+        fetch(`${import.meta.env.VITE_API_URL}/characters?sort=initiative&min_initiative=0`, {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
