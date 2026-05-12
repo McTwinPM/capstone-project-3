@@ -1,6 +1,5 @@
-import { useState } from 'react';
 
-function AddCharacterForm({ name, setName, initiative, setInitiative, hp, setHp, ac, setAc, conditions, setConditions, message, setMessage, setCharacters, onSubmit }) {
+function AddCharacterForm({ name, setName, initiative, setInitiative, hp, setHp, ac, setAc, message, setMessage, setCharacters, onSubmit }) {
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -9,7 +8,6 @@ function AddCharacterForm({ name, setName, initiative, setInitiative, hp, setHp,
             Initiative: parseInt(initiative),
             HitPoints: parseInt(hp),
             ArmorClass: parseInt(ac),
-            // conditions: conditions.split(",").map((c) => c.trim()).filter((c) => c !== "")
         };
 
         fetch("/api/characters", {
@@ -66,16 +64,9 @@ function AddCharacterForm({ name, setName, initiative, setInitiative, hp, setHp,
                     onChange={(e) => setAc(e.target.value)}
                     required
                 />
-                <input
-                    type="text"
-                    placeholder="Conditions (comma separated)"
-                    value={conditions}
-                    onChange={(e) => setConditions(e.target.value)}
-                />
                 <button type="submit">Add Character</button>
             </form>
             {message && <p className="message">{message}</p>}
-            {/* <button type='submit' onClick={handleSubmit}>Submit</button> */}
         </div>
     );
 }

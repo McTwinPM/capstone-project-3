@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 
 function PaginateButtons({ page, setPage, totalPages, setTotalPages }) {
 

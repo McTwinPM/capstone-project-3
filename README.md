@@ -38,9 +38,9 @@
         5. NavBar
 3. Clean Up
     1. Backend
-        1. remove old code/unneeded comments
+        1. remove old code/unneeded comments (done)
     1. Frontend
-        1. remove 'assets' and 'public' folders
+        1. remove 'assets' and 'public' folders (done)
         2. remove old code/unneeded comments
 4. README
 
