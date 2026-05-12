@@ -35,13 +35,29 @@ function CharacterCard({ character, setCharacters } ) {
     }
 
     const handleEdit = () => {
+        const toInt = (value) => {
+            if (value === "" || value === null || value === undefined) return null;
+            const n = parseInt(value, 10);
+            return isNaN(n) ? null : n;
+        };
+        const payload = {
+            name: editedCharacter.name,
+            HitPoints: toInt(editedCharacter.HitPoints),
+            Initiative: toInt(editedCharacter.Initiative),
+            ArmorClass: toInt(editedCharacter.ArmorClass),
+                };
+            if (Object.values(payload).some((v) => v === null && v !== undefined)) {
+                setErrors("All numeric fields must be valid numbers.");
+                return;
+}    
+
         fetch(`${import.meta.env.VITE_API_URL}/characters/${character.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
-            body: JSON.stringify(editedCharacter)
+            body: JSON.stringify(payload)
         })
             .then((r) => r.json())
             .then((data) => {
@@ -67,23 +83,23 @@ function CharacterCard({ character, setCharacters } ) {
         editing ? (
             <div>
                 <textarea
-                    value={editedCharacter.name || character.name}
+                    value={editedCharacter.name ?? character.name}
                     onChange={(e) => setEditedCharacter({ ...editedCharacter, name: e.target.value })}
                 />
                 <textarea
-                    value={editedCharacter.Initiative || character.Initiative}
+                    value={editedCharacter.Initiative ?? character.Initiative}
                     onChange={(e) => setEditedCharacter({ ...editedCharacter, Initiative: e.target.value })}
                 />
                 <textarea
-                    value={editedCharacter.HitPoints || character.HitPoints}
+                    value={editedCharacter.HitPoints ?? character.HitPoints}
                     onChange={(e) => setEditedCharacter({ ...editedCharacter, HitPoints: e.target.value })}
                 />
                 <textarea
-                    value={editedCharacter.ArmorClass || character.ArmorClass}
+                    value={editedCharacter.ArmorClass ?? character.ArmorClass}
                     onChange={(e) => setEditedCharacter({ ...editedCharacter, ArmorClass: e.target.value })}
                 />
                 <textarea
-                    value={editedCharacter.conditions || (Array.isArray(character.conditions) ? character.conditions.join(", ") : "")}
+                    value={editedCharacter.conditions ?? (Array.isArray(character.conditions) ? character.conditions.join(", ") : "")}
                     onChange={(e) => setEditedCharacter({ ...editedCharacter, conditions: e.target.value })}
                 />
                 {errors && <div className="error">{errors}</div>}
