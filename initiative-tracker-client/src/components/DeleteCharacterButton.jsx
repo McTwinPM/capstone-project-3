@@ -1,8 +1,6 @@
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function DeleteCharacterButton({ characterId, setCharacters }) {
-    const [deleting, setDeleting] = useState(false);
     const [error, setError] = useState(null);
 
     const handleDelete = (event) => {

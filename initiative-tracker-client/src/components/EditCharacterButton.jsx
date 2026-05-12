@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 function EditCharacterButton({ character, setCharacter, editing, setEditing }) {
     const [editedCharacter, setEditedCharacter] = useState(character);

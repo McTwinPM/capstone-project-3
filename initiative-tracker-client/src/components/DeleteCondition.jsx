@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function DeleteCondition({ characterId, setConditions, conditionId }) {
     const [message, setMessage] = useState("");

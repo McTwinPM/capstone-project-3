@@ -1,4 +1,4 @@
-import { useState, useEffect, use, } from "react";
+import { useState, useEffect } from "react";
 import AddCondition from "./AddCondition";
 import DeleteCharacterButton from "./DeleteCharacterButton";
 import DeleteCondition from "./DeleteCondition";
@@ -9,9 +9,6 @@ function CharacterCard({ character, setCharacters } ) {
     const [errors, setErrors] = useState(null);
     const [conditions, setConditions] = useState([]);
 
-    // useEffect(() => {
-    //     if (character?.conditions) setConditions(character.conditions);
-    // }, [character]);
 
     useEffect(() => {
         fetch(`/api/characters/${character.id}/conditions`, {

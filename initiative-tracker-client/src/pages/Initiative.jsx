@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import CharacterCard from "../components/CharacterCard";
-import React from "react";
 
 function Initiative() {
     const [characters, setCharacters] = useState([]);
