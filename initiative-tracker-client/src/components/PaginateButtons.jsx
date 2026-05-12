@@ -2,7 +2,7 @@
 function PaginateButtons({ page, setPage, totalPages, setTotalPages }) {
 
     const handleLoadMore = () => {
-        fetch(`/api/characters?page=${page + 1}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/characters?page=${page + 1}`, {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
@@ -16,7 +16,7 @@ function PaginateButtons({ page, setPage, totalPages, setTotalPages }) {
 
     const handleLoadPrevious = () => {
         if (page > 1) {
-            fetch(`/api/characters?page=${page - 1}`, {
+            fetch(`${import.meta.env.VITE_API_URL}/characters?page=${page - 1}`, {
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`
                 }

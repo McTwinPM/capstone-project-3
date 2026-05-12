@@ -19,7 +19,7 @@ function CharacterVault() {
 
 
     useEffect(() => {
-        fetch("/api/characters?sort=name", {
+        fetch(`${import.meta.env.VITE_API_URL}/characters?sort=name`, {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
