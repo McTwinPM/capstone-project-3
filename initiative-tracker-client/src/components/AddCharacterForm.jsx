@@ -10,7 +10,7 @@ function AddCharacterForm({ name, setName, initiative, setInitiative, hp, setHp,
             ArmorClass: parseInt(ac),
         };
 
-        fetch("/api/characters", {
+        fetch(`${import.meta.env.VITE_API_URL}/characters`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -28,7 +28,6 @@ function AddCharacterForm({ name, setName, initiative, setInitiative, hp, setHp,
                     console.log("Character added:", data);
                     setCharacters(prev => [...prev, data.character]);
                 }
-                // setCharacters(prev => [...prev, data]);
             });
     }
 

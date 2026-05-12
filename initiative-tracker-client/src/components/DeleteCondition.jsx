@@ -4,7 +4,7 @@ function DeleteCondition({ characterId, setConditions, conditionId }) {
     const [message, setMessage] = useState("");
 
     const handleDelete = (event) => {
-        fetch(`/api/characters/${characterId}/conditions/${conditionId}`, {
+        fetch(`${import.meta.env.VITE_API_URL}/characters/${characterId}/conditions/${conditionId}`, {
             method: "DELETE",
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`

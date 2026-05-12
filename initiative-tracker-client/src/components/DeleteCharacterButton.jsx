@@ -6,7 +6,7 @@ function DeleteCharacterButton({ characterId, setCharacters }) {
     const handleDelete = (event) => {
         if (window.confirm("Are you sure you want to delete this character?")) {
             event.preventDefault();
-            fetch(`/api/characters/${characterId}`, {
+            fetch(`${import.meta.env.VITE_API_URL}/characters/${characterId}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${localStorage.getItem("token")}`
