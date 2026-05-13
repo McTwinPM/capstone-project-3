@@ -2,6 +2,7 @@ import LoginForm from '../components/LoginForm';
 import SignupForm from '../components/SignupForm';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import "../styles/Login.css";
 
 function Login({ onLogin }) {
     const [showLogin, setShowLogin] = useState(true);
@@ -14,7 +15,7 @@ function Login({ onLogin }) {
     }
 
     return (
-        <div>
+        <div className="login-container">
             <h1 className="login-title">Login</h1>
             {showLogin ? (
                 <>

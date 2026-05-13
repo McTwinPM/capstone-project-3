@@ -81,7 +81,7 @@ function CharacterCard({ character, setCharacters } ) {
 
     return (
         editing ? (
-            <div>
+            <div className="character-card editing">
                 <textarea
                     value={editedCharacter.name ?? character.name}
                     onChange={(e) => setEditedCharacter({ ...editedCharacter, name: e.target.value })}
@@ -108,11 +108,16 @@ function CharacterCard({ character, setCharacters } ) {
             </div>
         ) : (
         <div className="character-card">
-            <h2>{character.name}</h2>
-            <p>Initiative: {character.Initiative}</p>
-            <p>HP: {character.HitPoints}</p>
-            <p>AC: {character.ArmorClass}</p>
-            <p>Conditions: </p>
+            <div className="character-header">
+                <h2>{character.name}</h2>
+            </div>
+            <div className="card-stats">
+                <p>Initiative: {character.Initiative}</p>
+                <p>HP: {character.HitPoints}</p>
+                <p>AC: {character.ArmorClass}</p>
+            </div>
+            <div className="card-conditions">
+                <p>Conditions: </p>
                 <ul>
                     {conditions.length > 0 ? conditions.map((condition) => (
                 <li key={condition.id}>
@@ -130,10 +135,13 @@ function CharacterCard({ character, setCharacters } ) {
                 conditions={conditions} 
                 setConditions={setConditions}
              />
-            <button onClick={editCharacter}>Edit</button>
-            <DeleteCharacterButton className="delete-character-button"
-                characterId={character.id} 
-                setCharacters={setCharacters} />
+            </div>
+            <div className="card-buttons">
+                <button onClick={editCharacter}>Edit</button>
+                <DeleteCharacterButton className="delete-character-button"
+                    characterId={character.id} 
+                    setCharacters={setCharacters} />
+            </div>
         </div>
     ));
 }

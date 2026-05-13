@@ -1,0 +1,15 @@
+
+h1.title {
+  font-size: 48px;
+  letter-spacing: -1.44px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.initiative-tracker {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 16px;
+}
