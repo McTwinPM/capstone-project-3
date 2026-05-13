@@ -3,6 +3,7 @@ import SearchBar from "../components/SearchBar";
 import AddCharacterForm from "../components/AddCharacterForm";
 import PaginateButtons from "../components/PaginateButtons";
 import CharacterCard from "../components/CharacterCard";
+import "../styles/CharacterVault.css";
 
 
 function CharacterVault() {

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import CharacterCard from "../components/CharacterCard";
+import "../styles/Initiative.css";
 
 function Initiative() {
     const [characters, setCharacters] = useState([]);

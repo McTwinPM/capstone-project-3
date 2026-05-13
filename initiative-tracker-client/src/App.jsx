@@ -33,7 +33,7 @@ function App() {
     <>
       <Navbar setUser={setUser} />
       <main>
-        <h1>Welcome, {user.username}!</h1>
+        <h1 className="welcome-message">Welcome, {user.username}!</h1>
         <Routes>
           <Route path='/' element={<Initiative />} />
           <Route path='/characters' element={<CharacterVault />} />
