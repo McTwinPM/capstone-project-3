@@ -137,7 +137,7 @@ function CharacterCard({ character, setCharacters } ) {
              />
             </div>
             <div className="card-buttons">
-                <button onClick={editCharacter}>Edit</button>
+                <button onClick={editCharacter}>Edit Character</button>
                 <DeleteCharacterButton className="delete-character-button"
                     characterId={character.id} 
                     setCharacters={setCharacters} />

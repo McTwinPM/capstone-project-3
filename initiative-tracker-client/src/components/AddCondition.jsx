@@ -36,7 +36,7 @@ function AddCondition({ characterId, conditions, setConditions }) {
                 value={condition}
                 onChange={(e) => setCondition(e.target.value)}
             />
-            <button type="submit">Add</button>
+            <button type="submit">Add Condition</button>
         </form>
     );
 }
