@@ -1,5 +1,9 @@
 # D&D Initiative App
 
+This is my D&D Initiative Tracker for Dungeon Masters.
+
+This app allows users to create an account with a username and password. Once logged in, the user can create and store any number of characters with information necessary for combat (Name, Armor Class, Hit Points, and Initiative roll), as well as the ability to edit and delete them on the fly. Users can also add or remove status effects, or Conditions, to characters with little commands.
+
 ## TODO
 
 1. Set Up Server
@@ -62,6 +66,14 @@
     2. React Router DOM v7 - client-side routing
     3. Vite - build app and server
     4. ESLint - linting
+
+## Links
+
+If you'd like to look at the the live version, Here is the link to the fontend
+https://mctwins-dandd-initiative-tracker.onrender.com
+
+Here is the link to the API
+https://mctwins-dandd-initiative-app.onrender.com
 
 
 ## Setup

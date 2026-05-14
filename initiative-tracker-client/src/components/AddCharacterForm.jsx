@@ -63,7 +63,7 @@ function AddCharacterForm({ name, setName, initiative, setInitiative, hp, setHp,
                     onChange={(e) => setAc(e.target.value)}
                     required
                 />
-                <button type="submit">Add Character</button>
+                <button className="add-character-button" type="submit">Add Character</button>
             </form>
             {message && <p className="message">{message}</p>}
         </div>
