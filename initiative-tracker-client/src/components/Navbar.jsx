@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom'
+import "../styles/Navbar.css";
 
 function Navbar({ setUser }) {
     function handleLogout() {
@@ -7,10 +8,10 @@ function Navbar({ setUser }) {
     }
 
     return (
-        <nav>
+        <nav className="navbar">
             <NavLink to='/'>Initiative</NavLink>
             <NavLink to='/characters'>Character Vault</NavLink>
-            <button onClick={handleLogout}>Logout</button>
+            <button className="logout-button" onClick={handleLogout}>Logout</button>
         </nav>
     )
 }

@@ -35,7 +35,8 @@ h2 {
 
     gap: 12px;
     margin-bottom: 20px;
-    align-items: flex-start;
+    display: flex;
+    align-items: center;
 }
 
 .add-character-form form {
@@ -54,7 +55,6 @@ h2 {
 .add-character-form form button {
   flex-basis: 100%;
   max-width: max-content;
-  margin: 0 auto;      /* centers button */
   display: block;
 }
 

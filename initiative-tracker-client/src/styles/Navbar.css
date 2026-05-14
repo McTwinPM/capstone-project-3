@@ -1,0 +1,45 @@
+nav.navbar {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.logout-button {
+    border: none;
+    background-color: var(--primary);
+    color: red;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    align-self: flex-start;
+    outline: 1px solid red;
+    border-radius: 4px;
+    padding: 8px 16px;
+    transition: background-color 0.3s, color 0.3s, outline 0.3s;
+}
+
+.logout-button:hover {
+    background-color: red;
+    color: white;
+    outline: 1px solid white;
+}
+
+nav.navbar a,
+nav.navbar a:visited,
+nav.navbar a:link {
+  color: var(--text);
+  text-decoration: none;
+}
+
+nav.navbar a:hover {
+  color: var(--text-h);
+  text-decoration: underline;
+}
+
+nav.navbar a.active {
+  color: white;
+  text-decoration: underline;
+}

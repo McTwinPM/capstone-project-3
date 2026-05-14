@@ -27,7 +27,7 @@ function DeleteCharacterButton({ characterId, setCharacters }) {
 
     return (
         <div>
-            <button onClick={handleDelete}>Delete</button>
+            <button onClick={handleDelete}>Delete Character</button>
             {error && <p className="error">{error}</p>}
         </div>
     );
