@@ -32,9 +32,35 @@ h2 {
 }
 
 .add-character-form {
-    display: flex;
-    flex-direction: column;
+
     gap: 12px;
     margin-bottom: 20px;
-    align-items: center;
+    align-items: flex-start;
+}
+
+.add-character-form form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.add-character-form form input {
+  margin-bottom: 0;
+}
+
+.add-character-form form button {
+  flex-basis: 100%;
+  max-width: max-content;
+  margin: 0 auto;      /* centers button */
+  display: block;
+}
+
+p.message {
+    color: var(--text);
+    font-size: 16px;
+    text-align: center;
+    margin-top: 20px;
 }
