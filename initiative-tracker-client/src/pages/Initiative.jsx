@@ -26,7 +26,7 @@ function Initiative() {
             <h1 className="title">Initiative Tracker</h1>
             <div className="initiative-tracker">
                 {characters.map((character) => (
-                    <CharacterCard key={character.id} character={character} />
+                    <CharacterCard key={character.id} character={character} setCharacters={setCharacters}/>
                 ))}
             </div>
         </>

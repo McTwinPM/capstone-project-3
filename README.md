@@ -91,7 +91,13 @@ Fork and clone this repository
 
 3. GET Me (`/me`) - Checks for token, then retrieves current user
 
+4. GET and POST Characters (`/characters`) – Retrieves all characters and allows the creation of new characters.
 
+5. PATCH and DELETE Characters (`/characters/${id}`) – Allows editing of character information and deleting characters.
+
+6.	GET and POST Conditions (`/characters/${id}/conditions`) – Allows retrieving all conditions and adding new conditions to each character.
+
+7.	PATCH and DELETE conditions (`/characters/${id}/conditions/${id}`) – Allows editing conditions and deleting conditions.
 
 
 ## Future Features
