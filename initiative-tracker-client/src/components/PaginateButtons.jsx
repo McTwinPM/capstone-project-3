@@ -1,5 +1,5 @@
 
-function PaginateButtons({ page, setPage, totalPages, setTotalPages }) {
+function PaginateButtons({ page, setPage, totalPages, setTotalPages, setCharacters }) {
 
     const handleLoadMore = () => {
         fetch(`${import.meta.env.VITE_API_URL}/characters?page=${page + 1}`, {
@@ -9,8 +9,9 @@ function PaginateButtons({ page, setPage, totalPages, setTotalPages }) {
         })
             .then((r) => r.json())
             .then((data) => {
-                setPage(page + 1);
-                setTotalPages(data.totalPages);
+                setPage(data.current_page);
+                setTotalPages(data.pages);
+                setCharacters(data.characters);
             });
     };
 
@@ -23,19 +24,20 @@ function PaginateButtons({ page, setPage, totalPages, setTotalPages }) {
             })
                 .then((r) => r.json())
                 .then((data) => {
-                    setPage(page - 1);
-                    setTotalPages(data.totalPages);
+                    setPage(data.current_page);
+                    setTotalPages(data.pages);
+                    setCharacters(data.characters);
                 });
         }
     };
 
     return (
-        <div className = "paginate-buttons">
+        <div className = "pagination-buttons">
             {page > 1 && (
-                <button className = "paginate-previous-button" onClick={handleLoadPrevious}>Previous</button>
+                <button className = "pagination-previous-button" onClick={handleLoadPrevious}>Previous</button>
             )}
             {page < totalPages && (
-                <button className = "paginate-next-button" onClick={handleLoadMore}>Next</button>
+                <button className = "pagination-next-button" onClick={handleLoadMore}>Next</button>
             )}
         </div>
     );
