@@ -83,24 +83,27 @@ function CharacterCard({ character, setCharacters } ) {
         editing ? (
             <div className="character-card editing">
                 <textarea
+                    placeholder="Name"
                     value={editedCharacter.name ?? character.name}
                     onChange={(e) => setEditedCharacter({ ...editedCharacter, name: e.target.value })}
                 />
-                <textarea
+                <input
+                    placeholder="Initiative"
+                    type="number"
                     value={editedCharacter.Initiative ?? character.Initiative}
                     onChange={(e) => setEditedCharacter({ ...editedCharacter, Initiative: e.target.value })}
                 />
-                <textarea
+                <input
+                    placeholder="Hit Points"
+                    type="number"
                     value={editedCharacter.HitPoints ?? character.HitPoints}
                     onChange={(e) => setEditedCharacter({ ...editedCharacter, HitPoints: e.target.value })}
                 />
-                <textarea
+                <input
+                    placeholder="Armor Class"
+                    type="number"
                     value={editedCharacter.ArmorClass ?? character.ArmorClass}
                     onChange={(e) => setEditedCharacter({ ...editedCharacter, ArmorClass: e.target.value })}
-                />
-                <textarea
-                    value={editedCharacter.conditions ?? (Array.isArray(character.conditions) ? character.conditions.join(", ") : "")}
-                    onChange={(e) => setEditedCharacter({ ...editedCharacter, conditions: e.target.value })}
                 />
                 {errors && <div className="error">{errors}</div>}
                 <button onClick={handleEdit}>Save</button>
