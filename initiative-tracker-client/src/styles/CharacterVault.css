@@ -32,11 +32,12 @@ h2 {
 }
 
 .add-character-form {
-
-    gap: 12px;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
 }
 
 .add-character-form form {

@@ -62,6 +62,29 @@ body {
   margin-bottom: 16px;
 }
 
+.character-card.editing {
+  background-color: var(--primary);
+  border-color: var(--text);
+  color: var(--text);
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.character-card.editing input, .character-card.editing textarea {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 8px 12px;
+  font: inherit;
+}
+
+.character-card.editing textarea {
+  min-height: 40px;
+  resize: vertical;
+}
+
 
 nav button:hover {
   background-color: red;
