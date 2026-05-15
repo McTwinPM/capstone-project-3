@@ -28,8 +28,8 @@ function CharacterVault() {
             .then((r) => r.json())
             .then((data) => {
                 setCharacters(data.characters);
-                setPage(data.page);
-                setTotalPages(data.totalPages);
+                setPage(data.current_page);
+                setTotalPages(data.pages);
             });
     }, []);
 
@@ -61,11 +61,12 @@ function CharacterVault() {
                     <CharacterCard key={character.id} character={character} setCharacters={setCharacters} />
                 ))}
             </div>
-            <PaginateButtons
+            <PaginateButtons className="pagination-buttons"
                 page={page}
                 setPage={setPage}
                 totalPages={totalPages}
                 setTotalPages={setTotalPages}
+                setCharacters={setCharacters}
             />
         </>
     );
