@@ -13,3 +13,25 @@ h1.title {
   gap: 24px;
   padding: 16px;
 }
+
+.initiative-controls {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 12px;
+}
+
+.initiative-controls button {
+  padding: 10px 18px;
+  border: 1px solid #7f8c8d;
+  border-radius: 8px;
+  background: #09aa41;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.initiative-row.active-turn .character-card {
+  outline: 10px solid #09aa41;
+  box-shadow: 0 0 0 4px rgba(243, 156, 18, 0.25);
+  transform: translateY(-1px);
+  transition: all 150ms ease;
+}
