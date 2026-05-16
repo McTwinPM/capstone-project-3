@@ -1,4 +1,4 @@
-import { use, useEffect, useMemo, useState } from "react";
+import {  useEffect, useMemo, useState } from "react";
 import CharacterCard from "../components/CharacterCard";
 import "../styles/Initiative.css";
 
