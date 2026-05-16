@@ -48,7 +48,6 @@ function LoginForm({ onLogin }) {
 
     return (
         <form onSubmit={handleSubmit}>
-            {/* <h2>Login</h2> */}
             {error && <p className="error">{error}</p>}
             <div>
                 <label className= 'login-username-label'>Username:</label>

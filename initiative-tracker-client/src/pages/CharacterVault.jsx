@@ -13,7 +13,6 @@ function CharacterVault() {
     const [initiative, setInitiative] = useState("");
     const [hp, setHp] = useState("");
     const [ac, setAc] = useState("");
-    const [conditions, setConditions] = useState("");
     const [message, setMessage] = useState("");
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
@@ -50,8 +49,6 @@ function CharacterVault() {
                 setHp={setHp}
                 ac={ac}
                 setAc={setAc}
-                conditions={conditions}
-                setConditions={setConditions}
                 message={message}
                 setMessage={setMessage}
                 setCharacters={setCharacters}

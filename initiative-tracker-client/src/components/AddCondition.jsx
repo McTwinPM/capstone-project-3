@@ -1,7 +1,6 @@
 import {  useState } from "react";
 
 function AddCondition({ characterId, conditions, setConditions }) {
-    // const [conditionInput, setConditionInput] = useState("");
     const [condition, setCondition] = useState("");
     const [message, setMessage] = useState("");
 

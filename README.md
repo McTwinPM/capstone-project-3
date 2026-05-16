@@ -4,49 +4,6 @@ This is my D&D Initiative Tracker for Dungeon Masters.
 
 This app allows users to create an account with a username and password. Once logged in, the user can create and store any number of characters with information necessary for combat (Name, Armor Class, Hit Points, and Initiative roll), as well as the ability to edit and delete them on the fly. Users can also add or remove status effects, or Conditions, to characters with little commands.
 
-## TODO
-
-1. Set Up Server
-    1. install python dependencies(done)
-    2. create server folder/files (done)
-    3. App (done)
-    4. Models (done)
-    5. Config (done)
-    6. Seed (done)
-    7. Migrate database (done)
-2. Set Up Client
-    1. install React/Javascript dependencies (done)
-    2. Set up pages and components (done)
-        1. Login (done)
-            1. LoginForm (done)
-            2. SignupForm (done)
-        2. Character Vault
-            1. CharacterList (done)
-            2. AddCharacterForm (done)
-            3. EditCharacterButton (done)
-            4. DeleteCharacterButton (done)
-            5. CharacterCard (done)
-            6. SearchBar (done)
-            7. PaginateButtons (done)
-        3. Initiative (done)
-            1. EditCharacterButton (done)
-            2. AddconditionForm (done)
-            3. DeleteCondition (done)
-        4. App (done)
-            1. Navbar  (done)
-    3. CSS
-        1. App
-        2. Login
-        3. Initiative
-        4. Character Vault
-        5. NavBar
-3. Clean Up
-    1. Backend
-        1. remove old code/unneeded comments (done)
-    1. Frontend
-        1. remove 'assets' and 'public' folders (done)
-        2. remove old code/unneeded comments
-4. README
 
 ## Technology used
 1. Backend
@@ -56,9 +13,10 @@ This app allows users to create an account with a username and password. Once lo
     4. Flask-Migrate - database migrations
     5. Flask-Bcrypt - password hashing
     6. Flask-CORS - cross-origin requests
-    7. Marshmellow - schema validation/serialization
-    8. Faker - seed data generation
-    9. SQLAlchemy - ORM/database
+    7. Flask-JWT-Extended - Auhorization/Authentication
+    8. Marshmellow - schema validation/serialization
+    9. Faker - seed data generation
+    10. Flask-SQLAlchemy - ORM/database
         1. SQLite - database
 
 2. Frontend
@@ -80,19 +38,46 @@ https://mctwins-dandd-initiative-app.onrender.com
 
 Fork and clone this repository
 
+### Create .env
+From the root directory, type:
+```bash
+cd initiative-tracker-client #Naviage to client folder
+touch .env #Creates environment file
+```
+Inside .env add:
+```bash
+VITE_API_URL=/api # This tells the client where to send API requests.
+```
 ### Install Dependencies
-1. Enter the command `pipenv install` to install the dependencies for the backend API.
-2. Navigate to the `` folder and enter `npm install` to install necessary dependencies for the frontend client.
+From the root directory, enter:
+```bash
+pipenv install #install the dependencies for the backend API
+cd initiative-tracker-client #Naviage to client folder
+npm install #install dependencies for the frontend client
+```
 
 ### Create Database
-1. Navigate to the `server` folder and run `flask db init` to initialize database migration and create the folders for migration data
-2. Enter `flask db migrate -m "initial migration"` for first migration
-3. Then, enter `flask db upgrade head` to form the database
-4. Finally, enter `python seed.py` to run the Seed file and fill your database with random data
+From the root directory, enter:
+```bash
+cd server #Naviage to backend folder
+flask db init #initialize database migration and create the folders for migration data
+flask db migrate -m "initial migration" #marks first migration
+flask db upgrade head #forms the database
+python seed.py #Runs the seed file and fills database with random data
+```
 
 ### Run The App
-1. From the `server` folder, enter `python app.py` to run the backend api.
-2. In another terminal, navigate to the `` folder and enter `npm run dev` to start the frontend client
+Using two terminals, but starting from the root directory
+1. In one terminal enter:
+```bash
+cd server #Naviage to backend folder
+python app.py #Runs the backend API
+```
+2. In the second terminal, enter:
+```bash
+cd initiative-tracker-client #Naviage to client folder
+npm run dev #start the frontend React client
+```
 
 
 ## Routes/Endpoints
@@ -113,3 +98,8 @@ Fork and clone this repository
 
 
 ## Future Features
+1. File upload feature - This will allow DMs to upload character sheets (informational documents with ALL information on that character, both relevant and not relevant to combat) for reference when needed.
+
+2. Text area for characters - This will allow DMs to make notes on certain characters. These notes could give context to any custom condtion the user has created.
+
+3. UI improvements - As features get added, I would like to make it look more modern, without sacrificing the usability.
