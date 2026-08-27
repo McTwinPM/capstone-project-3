@@ -40,12 +40,9 @@ function CharacterVault() {
 
     const handleSearch = (term) => {
         setSearchTerm(term);
-        setPage(1); // Reset to the first page when a new search is performed
+        setPage(1);
     };
 
-    // const filteredCharacters = characters.filter((character) =>
-    //     character.name.toLowerCase().includes(searchTerm.toLowerCase())
-    // );
 
     return (
         <>
