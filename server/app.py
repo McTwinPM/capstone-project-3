@@ -80,12 +80,17 @@ class CharacterList(Resource):
         page = request.args.get('page', 1, type=int)
         per_page = request.args.get('per_page', 10, type=int)
 
+        search = request.args.get('search', '', type=str).strip()
+
         query = Character.query.filter_by(user_id=user_id)
         sort = request.args.get('sort', 'id')
         if sort == 'initiative':
             query = query.order_by(Character.Initiative.desc())
         else:
             query = query.order_by(Character.name.asc())
+        
+        if search:
+            query = query.filter(Character.name.ilike(f"%{search}%"))
         
         min_initiative = request.args.get('min_initiative', type=int)
         if min_initiative is not None:

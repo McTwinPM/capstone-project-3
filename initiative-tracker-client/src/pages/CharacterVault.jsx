@@ -19,7 +19,13 @@ function CharacterVault() {
 
 
     useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/characters?sort=name`, {
+        const params = new URLSearchParams({
+            sort: "name",
+            page: page,
+            search: searchTerm
+        });
+        
+        fetch(`${import.meta.env.VITE_API_URL}/characters?${params.toString()}`, {
             headers: {
                 "Authorization": `Bearer ${localStorage.getItem("token")}`
             }
@@ -30,16 +36,18 @@ function CharacterVault() {
                 setPage(data.current_page);
                 setTotalPages(data.pages);
             });
-    }, []);
+    }, [searchTerm, page]);
 
-    const filteredCharacters = characters.filter((character) =>
-        character.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const handleSearch = (term) => {
+        setSearchTerm(term);
+        setPage(1);
+    };
+
 
     return (
         <>
             <h1 className="title">Character Vault</h1>
-            <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+            <SearchBar searchTerm={searchTerm} setSearchTerm={handleSearch} />
             <AddCharacterForm
                 name={name}
                 setName={setName}
@@ -54,16 +62,20 @@ function CharacterVault() {
                 setCharacters={setCharacters}
             />
             <div className="character-vault">
-                {filteredCharacters.map((character) => (
-                    <CharacterCard key={character.id} character={character} setCharacters={setCharacters} />
+                {characters.map((character) => (
+                    <CharacterCard 
+                    key={character.id} 
+                    character={character} 
+                    setCharacters={setCharacters} />
                 ))}
             </div>
             <PaginateButtons className="pagination-buttons"
                 page={page}
                 setPage={setPage}
                 totalPages={totalPages}
-                setTotalPages={setTotalPages}
-                setCharacters={setCharacters}
+                // setTotalPages={setTotalPages}
+                // setCharacters={setCharacters}
+                // searchTerm={searchTerm}
             />
         </>
     );
