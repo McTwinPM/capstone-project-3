@@ -1,43 +1,43 @@
 
-function PaginateButtons({ page, setPage, totalPages, setTotalPages, setCharacters }) {
+function PaginateButtons({ page, setPage, totalPages, setTotalPages, setCharacters, searchTerm }) {
 
-    const handleLoadMore = () => {
-        fetch(`${import.meta.env.VITE_API_URL}/characters?page=${page + 1}`, {
-            headers: {
-                "Authorization": `Bearer ${localStorage.getItem("token")}`
-            }
-        })
-            .then((r) => r.json())
-            .then((data) => {
-                setPage(data.current_page);
-                setTotalPages(data.pages);
-                setCharacters(data.characters);
-            });
-    };
+    // const loadPage = (nextPage) => {
+    //     const params = new URLSearchParams({
+    //         sort: "name",
+    //         page: nextPage,
+    //         search: searchTerm
+    //     });
 
-    const handleLoadPrevious = () => {
-        if (page > 1) {
-            fetch(`${import.meta.env.VITE_API_URL}/characters?page=${page - 1}`, {
-                headers: {
-                    "Authorization": `Bearer ${localStorage.getItem("token")}`
-                }
-            })
-                .then((r) => r.json())
-                .then((data) => {
-                    setPage(data.current_page);
-                    setTotalPages(data.pages);
-                    setCharacters(data.characters);
-                });
-        }
-    };
+    //     fetch(`${import.meta.env.VITE_API_URL}/characters?${params.toString()}`, {
+    //         headers: {
+    //             "Authorization": `Bearer ${localStorage.getItem("token")}`
+    //         }
+    //     })
+    //         .then((r) => r.json())
+    //         .then((data) => {
+    //             setPage(data.current_page);
+    //             setTotalPages(data.pages);
+    //             setCharacters(data.characters);
+    //         });
+    // };
+
+    // const handleLoadMore = () => {
+    //     loadPage(page + 1);
+    // };
+
+    // const handleLoadPrevious = () => {
+    //     if (page > 1) {
+    //         loadPage(page - 1);
+    //     }
+    // };
 
     return (
         <div className = "pagination-buttons">
             {page > 1 && (
-                <button className = "pagination-previous-button" onClick={handleLoadPrevious}>Previous</button>
+                <button className = "pagination-previous-button" onClick={() => setPage((currentPage) => currentPage - 1)}>Previous</button>
             )}
             {page < totalPages && (
-                <button className = "pagination-next-button" onClick={handleLoadMore}>Next</button>
+                <button className = "pagination-next-button" onClick={() => setPage((currentPage) => currentPage + 1)}>Next</button>
             )}
         </div>
     );
